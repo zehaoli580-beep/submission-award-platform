@@ -1,0 +1,23 @@
+# 构建产物
+backend/target/
+frontend/dist/
+
+# 依赖包(体积大, 可由 package.json / pom.xml 重新安装)
+frontend/node_modules/
+
+# 上传的稿件文件(运行时数据, 不入库)
+backend/uploads/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 日志
+*.log

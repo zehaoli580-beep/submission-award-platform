@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      # 会话 60 分钟过期（前端长时间填表时防止提交时才发现掉线）
+      timeout: 60m
+      cookie:
+        name: DM_PLATFORM_SESSION
+
+spring:
+  application:
+    name: submission-award-platform
+  datasource:
+    # createDatabaseIfNotExist=true：首次启动自动建库，免手工执行 CREATE DATABASE
+    url: jdbc:mysql://localhost:3306/dm_platform?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root        # TODO: 换成你自己机器上 MySQL 的 root 密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      # 数字媒体作品（视频等）体积大，放宽上传上限
+      max-file-size: 200MB
+      max-request-size: 210MB
+
+mybatis:
+  configuration:
+    # 数据库下划线命名 -> Java 驼峰命名 自动映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+# 自定义配置：本地上传目录与允许的文件类型
+platform:
+  upload-dir: ./upload
+  allowed-extensions: mp4,mov,avi,png,jpg,jpeg,gif,zip,rar,pdf
